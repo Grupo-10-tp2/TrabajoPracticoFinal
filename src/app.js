@@ -28,5 +28,5 @@ app.get('/videojuegos', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+  console.log(`Servidor escuchando en http://localhost:${port}`); 
 });
