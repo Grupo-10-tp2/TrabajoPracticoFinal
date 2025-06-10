@@ -24,11 +24,13 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "node --watch --env-files=.env src/app.js",
+    "dev": "node --watch src/app.js",
     "test": "",
     "lint": "npx @biomejs/biome check --write src/*"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
