@@ -1,0 +1,29 @@
+
+
+
+
+
+# Crear préstamo entre usuario 1 y usuario 2 del videojuego 5
+POST http://localhost:3000/prestamos
+Content-Type: application/json
+
+{
+  "videojuego_id": "4cba6e03-37e8-45b0-a6a7-6a3f13022870",
+  "usuario_id_prestador": "297de367-3d8c-4c3e-a874-01e9dafc111c",
+  "usuario_id_receptor": "8f20b52f-7082-4ed3-a3ff-19122d501ea4",
+  "fecha_devolucion_estimada": "2025-07-01T00:00:00Z"
+}
+
+### Obtener todos los préstamos
+GET http://localhost:3000/prestamos
+Accept: application/json
+
+
+### Obtener préstamos por usuario
+GET http://localhost:3000/prestamos/usuario/297de367-3d8c-4c3e-a874-01e9dafc111c
+Accept: application/json
+
+
+### Registrar devolución de un préstamo
+PUT http://localhost:3000/prestamos/devolver/e8260591-f484-4f7b-b81e-3bdcfbc178e1
+Content-Type: application/json

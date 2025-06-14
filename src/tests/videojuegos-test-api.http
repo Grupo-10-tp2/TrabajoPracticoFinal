@@ -1,0 +1,31 @@
+# Obtener videojuegos
+GET http://localhost:3000/videojuegos
+Accept: application/json
+
+###
+
+# Crear videojuego
+POST http://localhost:3000/videojuegos
+Content-Type: application/json
+
+{
+  "titulo": "Hola",
+  "desarrollador": "Nintendo",
+  "genero": "Plataforma",
+  "plataforma": "NES",
+  "fecha_lanzamiento": "1985-09-13",
+  "calificacion": 9.5,
+  "esta_disponible": true
+}
+
+###
+
+# Crear videojuego con datos inválidos
+POST http://localhost:3000/videojuegos
+Content-Type: application/json
+
+{
+  "titulo": "",
+  "genero": "",
+  "anio": "no es un año"
+}
