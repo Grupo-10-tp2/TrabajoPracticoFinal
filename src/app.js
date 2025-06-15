@@ -1,32 +1,23 @@
-import express from 'express';
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
-dotenv.config();
-
-
-console.log("URL:", process.env.SUPABASE_URL); // ⬅️ DEBERÍA IMPRIMIR LA URL
-console.log("KEY:", process.env.SUPABASE_KEY?.slice(0, 10) + "..."); // parcial
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-
-
-
-const supabase = createClient(supabaseUrl, supabaseKey);
+import express from "express";
+import { prestamosRouter } from "./routes/prestamos.router.js";
+import { usuariosRouter } from "./routes/usuarios.router.js";
+import { videojuegosRouter } from "./routes/videojuegos.router.js";
+import { authRouter } from "./routes/auth.router.js";
 
 const app = express();
 const port = 3000;
 
-app.get('/videojuegos', async (req, res) => {
-  const { data, error } = await supabase
-    .from('videojuegos')
-    .select('*');
+app.use(express.json()); 
 
-  if (error) return res.status(500).json({ error: error.message });
+app.use("/videojuegos", videojuegosRouter);
+app.use("/usuarios", usuariosRouter);
+app.use("/prestamos", prestamosRouter);
+app.use("/auth", authRouter);
 
-  res.json(data);
+app.use((req, res) => {
+	res.status(404).json({ error: "Ruta no encontrada" });
 });
 
 app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`); 
+	console.log(`Servidor escuchando en http://localhost:${port}`);
 });

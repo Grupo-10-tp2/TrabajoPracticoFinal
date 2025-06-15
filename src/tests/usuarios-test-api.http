@@ -1,0 +1,28 @@
+
+
+
+
+# Obtener todos los usuarios
+GET http://localhost:3000/usuarios
+Accept: application/json
+
+###
+
+# Crear un usuario nuevo
+POST http://localhost:3000/usuarios
+Content-Type: application/json
+
+{
+  "nombre": "Hola",
+  "email": "test@example.com"
+}
+
+###
+
+# Crear usuario con dato faltante (test de error)
+POST http://localhost:3000/usuarios
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
