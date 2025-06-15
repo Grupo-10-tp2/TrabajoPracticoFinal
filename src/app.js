@@ -1,13 +1,13 @@
 import express from "express";
+import { authRouter } from "./routes/auth.router.js";
 import { prestamosRouter } from "./routes/prestamos.router.js";
 import { usuariosRouter } from "./routes/usuarios.router.js";
 import { videojuegosRouter } from "./routes/videojuegos.router.js";
-import { authRouter } from "./routes/auth.router.js";
 
 const app = express();
 const port = 3000;
 
-app.use(express.json()); 
+app.use(express.json());
 
 app.use("/videojuegos", videojuegosRouter);
 app.use("/usuarios", usuariosRouter);
