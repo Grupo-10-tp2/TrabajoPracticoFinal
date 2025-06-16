@@ -11,16 +11,19 @@ export const videojuegosService = {
 
 		return data;
 	},
-    async getJuegoById(id){
-        const { data, error } = await supabase.from('videojuegos').select("*").eq('id', id);
+	async getJuegoById(id) {
+		const { data, error } = await supabase
+			.from("videojuegos")
+			.select("*")
+			.eq("id", id);
 
-         if (error) {
-            console.error("Error al obtener el juego:", error.message);
-            throw new Error("No se pudo obtener el juego");
-        }
+		if (error) {
+			console.error("Error al obtener el juego:", error.message);
+			throw new Error("No se pudo obtener el juego");
+		}
 
-        return data[0];
-    },
+		return data[0];
+	},
 	async crearVideojuego(videojuego) {
 		const nuevoVideojuego = {
 			...videojuego,

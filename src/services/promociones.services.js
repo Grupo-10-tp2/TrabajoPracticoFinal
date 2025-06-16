@@ -1,61 +1,64 @@
 import supabase from "../config/supabaseClient";
 
 export const promocionesServices = {
-    async GetAllPromociones() {
-        const { data, error } = await supabase.from('Promociones').select('*')
+	async GetAllPromociones() {
+		const { data, error } = await supabase.from("Promociones").select("*");
 
-        if (error) {
-            console.error("Error al obtener promociones:", error.message);
-            throw new Error("No se pudieron obtener las promociones :(");
-        }
+		if (error) {
+			console.error("Error al obtener promociones:", error.message);
+			throw new Error("No se pudieron obtener las promociones :(");
+		}
 
-        return data;
-    },
-    async getPromocionById(id){
-        const { data, error } = await supabase.from('Promociones').select("*").eq('id', id);
+		return data;
+	},
+	async getPromocionById(id) {
+		const { data, error } = await supabase
+			.from("Promociones")
+			.select("*")
+			.eq("id", id);
 
-         if (error) {
-            console.error("Error al obtener promocion:", error.message);
-            throw new Error("No se pudo obtener la promocion :(");
-        }
+		if (error) {
+			console.error("Error al obtener promocion:", error.message);
+			throw new Error("No se pudo obtener la promocion :(");
+		}
 
-        return data[0];
-    },
-    async crearPromocion(promocion) {
-        const nuevaPromocion = {
-            ...promocion,
-            inicioPromo: new Date().toISOString(),
-        };
+		return data[0];
+	},
+	async crearPromocion(promocion) {
+		const nuevaPromocion = {
+			...promocion,
+			inicioPromo: new Date().toISOString(),
+		};
 
-        const { data, error } = await supabase
-            .from("Promociones")
-            .insert([nuevaPromocion])
-            .select();
+		const { data, error } = await supabase
+			.from("Promociones")
+			.insert([nuevaPromocion])
+			.select();
 
-        if (error) {
-            console.error("Error al crear promocion:", error.message);
-            throw new Error("No se pudo crear la promo :(");
-        }
+		if (error) {
+			console.error("Error al crear promocion:", error.message);
+			throw new Error("No se pudo crear la promo :(");
+		}
 
-        return data[0];
-    },
+		return data[0];
+	},
 
-    async asingarPromocion(idJuego, idPromocion) {
-        const promocionVideojuego = {
-            idJuego,
-            idPromocion
-        }
+	async asingarPromocion(idJuego, idPromocion) {
+		const promocionVideojuego = {
+			idJuego,
+			idPromocion,
+		};
 
-        const { data, error } = await supabase
-            .from(".from('Promocion_Videojuego')")
-            .insert([promocionVideojuego])
-            .select();
+		const { data, error } = await supabase
+			.from(".from('Promocion_Videojuego')")
+			.insert([promocionVideojuego])
+			.select();
 
-        if (error) {
-            console.error("Error al asingar promocion al juego:", error.message);
-            throw new Error("No se pudo asingar la promo al juego :(");
-        }
+		if (error) {
+			console.error("Error al asingar promocion al juego:", error.message);
+			throw new Error("No se pudo asingar la promo al juego :(");
+		}
 
-        return data[0];
-    }
-}
+		return data[0];
+	},
+};
