@@ -1,0 +1,25 @@
+### Obtener todas las promociones
+GET http://localhost:3000/promociones
+Accept: application/json
+
+###
+
+### Crear una nueva promoción
+POST http://localhost:3000/promociones
+Content-Type: application/json
+
+{
+  "descripcion": "Promo 2x1 en juegos de terror",
+  "porcentajeDescuento": 50
+}
+
+###
+
+### Asignar una promoción a un videojuego
+POST http://localhost:3000/asignar
+Content-Type: application/json
+
+{
+  "idJuego": 1,
+  "idPromocion": 2
+}

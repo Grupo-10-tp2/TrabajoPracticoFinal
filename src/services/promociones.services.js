@@ -50,7 +50,7 @@ export const promocionesServices = {
 		};
 
 		const { data, error } = await supabase
-			.from(".from('Promocion_Videojuego')")
+			.from("Promocion_Videojuego")
 			.insert([promocionVideojuego])
 			.select();
 
