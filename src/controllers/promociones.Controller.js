@@ -1,5 +1,5 @@
-import { promocionesServices } from "../services/promociones.services";
-import { videojuegosService } from "../services/videojuegos.services";
+import { promocionesServices } from "../services/promociones.services.js";
+import { videojuegosService } from "../services/videojuegos.services.js";
 
 export const promocionesController = {
 	async getAllPromociones(req, res) {

@@ -1,7 +1,7 @@
 import express from "express";
 import { authRouter } from "./routes/auth.router.js";
-import { authRouter } from "./routes/auth.router.js";
 import { prestamosRouter } from "./routes/prestamos.router.js";
+import { promocionesRouter } from "./routes/promociones.router.js";
 import { usuariosRouter } from "./routes/usuarios.router.js";
 import { videojuegosRouter } from "./routes/videojuegos.router.js";
 

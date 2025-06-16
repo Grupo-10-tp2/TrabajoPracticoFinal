@@ -1,7 +1,7 @@
-import supabase from "../config/supabaseClient";
+import supabase from "../config/supabaseClient.js";
 
 export const promocionesServices = {
-	async GetAllPromociones() {
+	async getAllPromociones() {
 		const { data, error } = await supabase.from("Promociones").select("*");
 
 		if (error) {

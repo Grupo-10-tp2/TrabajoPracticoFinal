@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { promocionesController } from "../controllers/promociones.Controller";
+import { promocionesController } from "../controllers/promociones.Controller.js";
 
 const promocionesRouter = Router();
 
-usuariosRouter.get("/", promocionesController.getAllPromociones());
-usuariosRouter.post("/asignar", promocionesController.asignarPromocion());
-usuariosRouter.post("/", promocionesController.crearPromocion());
+promocionesRouter.get("/promociones", promocionesController.getAllPromociones);
+promocionesRouter.post("/asignar", promocionesController.asignarPromocion);
+promocionesRouter.post("/", promocionesController.crearPromocion);
 
 export { promocionesRouter };
