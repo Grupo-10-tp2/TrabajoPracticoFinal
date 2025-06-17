@@ -26,3 +26,30 @@ Content-Type: application/json
 {
   "nombre": ""
 }
+
+###
+
+#Obtener usuario por Id
+GET http://localhost:3000/usuarios/dbb77e3e-cf8d-4c1f-ac4f-27743909fe6e
+Accept: application/json
+
+###
+
+#Actualizar usuario 
+PUT http://localhost:3000/usuarios/8f20b52f-7082-4ed3-a3ff-19122d501ea4
+Content-Type: application/json
+
+{
+  "nombre": "Alice Updated",
+  "email": "alice.updated@example.com"
+}
+
+###
+
+#Actualizar usuario con mail existente.
+PUT http://localhost:3000/usuarios/dbb77e3e-cf8d-4c1f-ac4f-27743909fe6e
+Content-Type: application/json
+
+{
+  "email": "maria.lopez@example.com"
+}
