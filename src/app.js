@@ -4,7 +4,7 @@ import { prestamosRouter } from "./routes/prestamos.router.js";
 import { promocionesRouter } from "./routes/promociones.router.js";
 import { usuariosRouter } from "./routes/usuarios.router.js";
 import { videojuegosRouter } from "./routes/videojuegos.router.js";
-
+import { userGamesRouter } from "./routes/user_games.router.js";
 const app = express();
 const port = 3000;
 
@@ -15,6 +15,7 @@ app.use("/usuarios", usuariosRouter);
 app.use("/prestamos", prestamosRouter);
 app.use("/auth", authRouter);
 app.use("/promociones", promocionesRouter);
+app.use("/user-games",userGamesRouter);
 
 app.use((req, res) => {
 	res.status(404).json({ error: "Ruta no encontrada" });

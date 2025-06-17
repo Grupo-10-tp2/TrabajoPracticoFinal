@@ -26,35 +26,45 @@ export const authService = {
 		if (existe.length > 0)
 			throw new Error("El usuario ya existe en la base de datos");
 
-		//
+		
 		const { error: dbError } = await supabase
 			.from("usuarios")
-			.insert([{ id: userId, email, nombre }]);
-
+			.insert([{ id: userId, email, nombre, rol: 'jugador'}]);
+														//por defecto, (y por ahora) se registran siempre solamente jugadores
 		if (dbError) throw new Error(dbError.message);
 
-		return { id: userId, email, nombre };
+		return { id: userId, email, nombre ,rol: 'jugador'};
 	},
 	login: async ({ email, password }) => {
-		const { data, error } = await supabase.auth.signInWithPassword({
-			email,
-			password,
-		});
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-		if (error) throw new Error("Credenciales inválidas");
+  if (error) throw new Error("Credenciales inválidas");
 
-		const user = data.user;
-		const userId = user.id;
-		const rol = user.user_metadata?.rol || "sin rol";
+  const userId = data.user.id;
 
-		return {
-			mensaje: "Login exitoso",
-			user: {
-				id: userId,
-				email: user.email,
-				rol,
-			},
-			token: data.session.access_token,
-		};
-	},
+  // consulta en tabla Usuarios para traer el verdadero rol declarado en la misma, y no el rol del user por defecto de Auth de supa.
+  const { data: usuario, error: errorUsuario } = await supabase
+    .from("usuarios")
+    .select("email, rol")
+    .eq("id", userId)
+    .single();
+
+  if (errorUsuario || !usuario) {
+    throw new Error("No se pudo obtener el rol del usuario");
+  }
+
+  return {
+    mensaje: "Login exitoso",
+    user: {
+      id: userId,
+      email: usuario.email,
+      rol: usuario.rol,
+    },
+    token: data.session.access_token,
+  };
+},
+
 };
