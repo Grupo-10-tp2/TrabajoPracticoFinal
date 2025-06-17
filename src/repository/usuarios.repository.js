@@ -6,6 +6,7 @@ export const usuarioRepository = {
         if (errorConsulta) throw new Error(`Error al traer los usuarios de la BD: ${errorConsulta.message}`);
 		return data;
     },
+
     async obtenerUsuarioPorEmail(email){
         const { data, errorConsulta } = await supabase
             .from("usuarios")
@@ -17,6 +18,7 @@ export const usuarioRepository = {
         }   
         return data;
     },
+
     async crearUsuario(nuevoUsuario){
         const { data, errorConsulta } = await supabase
 			.from("usuarios")
@@ -26,15 +28,7 @@ export const usuarioRepository = {
 		if (errorConsulta) throw new Error(`Error al crear usuario en la BD: ${errorConsulta.message}`);
 		return data[0];
     },
-    async usuarioExistente(nuevoUsuario){
-        const { data: existentes, error: errorConsulta } = await supabase
-			.from("usuarios")
-			.select("*")
-			.eq("email", nuevoUsuario.email);
 
-		if (errorConsulta) throw new Error(`Error al comprobar la existencia del usuario en la BD: ${errorConsulta.message}`);
-        return existentes;
-    },
     async obtenerUsuarioPorId(userId){
         const {data,errorConsulta} = await supabase
             .from('usuarios')
@@ -47,6 +41,7 @@ export const usuarioRepository = {
             }
             return data;
     },
+    
     async actualizarUsuario(userId, datosNuevos){
         const{data,errorConsulta} = await supabase
             .from('usuarios')

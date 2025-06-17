@@ -2,29 +2,15 @@ import {usuarioRepository} from '../repository/usuarios.repository.js';
 
 export const usuariosServices = {
 	async obtenerUsuarios() {
-		// const { data, error } = await supabase.from("usuarios").select("*");
-		// if (error) throw new Error(error.message);
 		const data = await usuarioRepository.obtenerUsuarios();
 		return data;
 	},
 
 	async crearUsuario(nuevoUsuario) {
-		// const { data: existentes, error: errorConsulta } = await supabase
-		// 	.from("usuarios")
-		// 	.select("*")
-		// 	.eq("email", nuevoUsuario.email);
-
-		// if (errorConsulta) throw new Error(errorConsulta.message);
 		const existentes = await usuarioRepository.obtenerUsuarioPorEmail(nuevoUsuario.email);
 		if (existentes)
 			throw new Error("Ya existe un usuario con ese email");
 
-		// const { data, error } = await supabase
-		// 	.from("usuarios")
-		// 	.insert([nuevoUsuario])
-		// 	.select();
-
-		// if (error) throw new Error(error.message);
 		const usuarioCreado = await usuarioRepository.crearUsuario(nuevoUsuario);
 		return usuarioCreado;
 	},

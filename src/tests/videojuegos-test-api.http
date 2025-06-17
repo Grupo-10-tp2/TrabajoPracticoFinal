@@ -29,3 +29,68 @@ Content-Type: application/json
   "genero": "",
   "anio": "no es un año"
 }
+
+###
+
+# Obtener un videojuego por ID 
+GET http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878
+Accept: application/json
+
+
+###
+
+# Obtener id con un id no existente
+GET http://localhost:3000/videojuegos/1234
+Accept: application/json
+
+###
+
+#Actualizar videojuegos
+PUT http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878
+Content-Type: application/json
+
+{
+  "titulo": "Pokemon Escudo",
+  "desarrollador": "Nintendo",
+  "genero": "Aventura",
+  "plataforma": "Nintendo Switch",
+  "fecha_lanzamiento": "2023-05-12",
+  "calificacion": 9.9,
+  "esta_disponible": true
+}
+###
+#Actualizar videojuegos con id incorrecto
+PUT http://localhost:3000/videojuegos/123
+Content-Type: application/json
+
+{
+  "titulo": "Pokemon Escudo",
+  "desarrollador": "Nintendo",
+  "genero": "Aventura",
+  "plataforma": "Nintendo Switch",
+  "fecha_lanzamiento": "2023-05-12",
+  "calificacion": 9.9,
+  "esta_disponible": true
+}
+
+###
+
+#Actualizar videojuegos incompleto
+PUT http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878
+Content-Type: application/json
+
+{
+  "titulo": "Juego Incompleto Para PUT",
+  "desarrollador": "Desarrollador Incompleto",
+  "esta_disponible": false
+}
+
+###
+
+#Actualizar disponibilidad.
+PATCH http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878/disponibilidad
+Content-Type: application/json
+
+{
+  "esta_disponible": false
+}
