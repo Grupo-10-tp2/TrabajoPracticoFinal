@@ -1,4 +1,4 @@
-### Registro de nuevo usuario
+### Registro de nuevo usuario (JUGADOR por defecto)
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
@@ -7,7 +7,21 @@ Content-Type: application/json
   "password": "12345678a",
   "nombre": "Ejemplo Usuario"
 }
-### Login de usuario
+
+
+### Registro ADMIN
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "administrador@gamehub.com",
+  "password": "12345678a",
+  "nombre": "Administrador",
+  "rol": "admin"
+} 
+
+
+### LOG ejemplo JUGADOR)
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
@@ -17,4 +31,12 @@ Content-Type: application/json
 }
 
 
+#### LOG ADMIN
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@gamehub.com",
+  "password": "12345678a"
+}
 

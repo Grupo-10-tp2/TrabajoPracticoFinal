@@ -52,5 +52,9 @@ export const usuariosServices = {
 		const usuarioActualizado = await usuarioRepository.actualizarUsuario(usuarioID, datosAActualizar);
 		return usuarioActualizado;
 
-	}
+	},
+	eliminarUsuario: async (id) => {
+  return await usuarioRepository.eliminarUsuarioPorId(id);
+}
+
 };

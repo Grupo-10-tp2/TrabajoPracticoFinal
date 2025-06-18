@@ -42,5 +42,14 @@ export const usuariosController = {
 		} catch (error) {
 			res.status(500).json({error:error.message});
 		}
-	}
+	},
+	eliminarUsuario: async (req, res) => {
+  const { id } = req.params;
+  try {
+    await usuariosServices.eliminarUsuario(id);
+    res.status(200).json({ mensaje: "Usuario eliminado correctamente" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 };

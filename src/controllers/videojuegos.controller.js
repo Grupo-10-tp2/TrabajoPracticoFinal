@@ -57,5 +57,15 @@ export const videojuegosController = {
 			 res.status(500).json({ error: error.message});
 		}
 		
-	}
+	},
+	eliminarVideojuego: async (req, res) => {
+  const { id } = req.params;
+  try {
+    await videojuegosService.eliminarVideojuego(id);
+    res.status(200).json({ mensaje: "Videojuego eliminado correctamente" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 };

@@ -55,5 +55,17 @@ export const usuarioRepository = {
 
             return data;
 
-    }
+    },
+         eliminarUsuarioPorId: async (id) => {
+  const { data, error } = await supabase
+    .from("usuarios")
+    .delete()
+    .eq("id", id)
+    .select(); 
+
+  if (error) throw new Error("Error al eliminar usuario");
+  if (!data || data.length === 0) throw new Error("Usuario no encontrado");
+}
+
+
 }

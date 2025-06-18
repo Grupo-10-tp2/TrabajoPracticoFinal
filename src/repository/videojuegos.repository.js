@@ -81,6 +81,17 @@ export const videojuegosRepository = {
                 throw new Error(`Error en la BD al actualizar el videojuego: ${error.message}`);
             }
             return data;
-	}
+	},
+    eliminarVideojuegoPorId: async (id) => {
+  const { data, error } = await supabase
+    .from("videojuegos")
+    .delete()
+    .eq("id", id)
+    .select();
+
+  if (error) throw new Error("Error al eliminar videojuego");
+  if (!data || data.length === 0) throw new Error("Videojuego no encontrado");
+},
+
 
 }

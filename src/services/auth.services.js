@@ -1,40 +1,56 @@
 import supabase from "../config/supabaseClient.js";
 
 export const authService = {
-	register: async ({ email, password, nombre }) => {
-		const { data: authData, error: authError } = await supabase.auth.signUp({
-			email,
-			password,
-		});
+register: async ({ email, password, nombre, rol = "jugador" }) => {
+  // 1. Registrar en Supabase Auth
+  const { data: authData, error: authError } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { rol } // Esto guarda el rol en los user_metadata del token
+    }
+  });
 
-		if (authError) {
-			if (authError.message.includes("already registered")) {
-				throw new Error("Este email ya está registrado");
-			}
-			throw new Error(authError.message);
-		}
+  if (authError) {
+    if (authError.message.includes("already registered")) {
+      throw new Error("Este email ya está registrado");
+    }
+    throw new Error(authError.message);
+  }
 
-		const userId = authData.user.id;
+  const userId = authData.user.id;
 
-		//  Validacion de que no haya ya uno creado
-		const { data: existe, error: consultaError } = await supabase
-			.from("usuarios")
-			.select("id")
-			.eq("id", userId);
+  // 2. Verificar si ya existe en la tabla usuarios
+  const { data: existe, error: consultaError } = await supabase
+    .from("usuarios")
+    .select("id")
+    .eq("id", userId);
 
-		if (consultaError) throw new Error(consultaError.message);
-		if (existe.length > 0)
-			throw new Error("El usuario ya existe en la base de datos");
+  if (consultaError) throw new Error(consultaError.message);
+  if (existe.length > 0)
+    throw new Error("El usuario ya existe en la base de datos");
 
-		
-		const { error: dbError } = await supabase
-			.from("usuarios")
-			.insert([{ id: userId, email, nombre, rol: 'jugador'}]);
-														//por defecto, (y por ahora) se registran siempre solamente jugadores
-		if (dbError) throw new Error(dbError.message);
+  // 3. Insertar en tabla 'usuarios' propia con el rol
+  const { error: dbError } = await supabase.from("usuarios").insert([
+    {
+      id: userId,
+      email,
+      nombre,
+      rol
+    }
+  ]);
 
-		return { id: userId, email, nombre ,rol: 'jugador'};
-	},
+  if (dbError) throw new Error(dbError.message);
+
+  // 4. Retornar datos útiles
+  return {
+    id: userId,
+    email,
+    nombre,
+    rol
+  };
+}
+,
 	login: async ({ email, password }) => {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,

@@ -1,4 +1,8 @@
-# Obtener videojuegos
+@token = ACA VA EL TOKEN (copiarlo del response del loguin)
+//Con el token que da al loguearse, supabase reconoce al usuario y sabe su rol, para las peticiones que lo requieran.
+###
+
+
 GET http://localhost:3000/videojuegos
 Accept: application/json
 
@@ -6,6 +10,7 @@ Accept: application/json
 
 # Crear videojuego
 POST http://localhost:3000/videojuegos
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -20,8 +25,9 @@ Content-Type: application/json
 
 ###
 
-# Crear videojuego con datos inválidos
+# Crear videojuego con datos inválidos (Solo admin)
 POST http://localhost:3000/videojuegos
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -45,8 +51,9 @@ Accept: application/json
 
 ###
 
-#Actualizar videojuegos
+#Actualizar videojuegos (Solo admin)
 PUT http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -59,8 +66,9 @@ Content-Type: application/json
   "esta_disponible": true
 }
 ###
-#Actualizar videojuegos con id incorrecto
+#Actualizar videojuegos con id incorrecto (Solo admin)
 PUT http://localhost:3000/videojuegos/123
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -75,8 +83,9 @@ Content-Type: application/json
 
 ###
 
-#Actualizar videojuegos incompleto
+#Actualizar videojuegos incompleto (Solo admin
 PUT http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -87,10 +96,15 @@ Content-Type: application/json
 
 ###
 
-#Actualizar disponibilidad.
+#Actualizar disponibilidad (Solo admin).
 PATCH http://localhost:3000/videojuegos/97815f27-e7ad-489c-9040-b1d82ab01878/disponibilidad
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "esta_disponible": false
 }
+
+###Eliminar Videojuego (Solo admin).
+DELETE http://localhost:3000/videojuegos/cfcaa7dd-bafb-4328-bc65-7cc90a3e9f5d
+Authorization: Bearer {{token}}

@@ -96,5 +96,9 @@ export const videojuegosService = {
                 throw new Error("No se pudo actualizar el videojuego (problema interno).");
             }
             return videojuegoActualizado;
-	}
+	},
+	eliminarVideojuego: async (id) => {
+  return await videojuegosRepository.eliminarVideojuegoPorId(id);
+}
+
 };
