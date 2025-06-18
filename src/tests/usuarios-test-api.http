@@ -1,9 +1,12 @@
 
+@token = eyJhbGciOiJIUzI1NiIsImtpZCI6Ik9tOFVCeHBsblhsTTc5T2siLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2ZwZ3FhYW9paWVibWNwdHd6ZWxlLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiI3MTQ1MzIxZi1mZmI3LTQ2NzgtODNhZS03NDFhMGJjZWE1NTgiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUwMjM4NjU1LCJpYXQiOjE3NTAyMzUwNTUsImVtYWlsIjoiYWRtaW5AZ2FtZWh1Yi5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsIjoiYWRtaW5AZ2FtZWh1Yi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGhvbmVfdmVyaWZpZWQiOmZhbHNlLCJzdWIiOiI3MTQ1MzIxZi1mZmI3LTQ2NzgtODNhZS03NDFhMGJjZWE1NTgifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MDIzNTA1NX1dLCJzZXNzaW9uX2lkIjoiMGViZWQ0ZjYtNzIzZS00MDA5LWJjMGUtZWNhZWQ0M2QxODQzIiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.yQn7QkD-uT41OjSQ97yYmuQp_OkPwauFIaYfl46t7wU
+//Con el token que da al loguearse, supabase reconoce al usuario y sabe su rol, para las peticiones que lo requieran.
+###
 
 
-
-# Obtener todos los usuarios
+# Obtener todos los usuarios (Solo admin)
 GET http://localhost:3000/usuarios
+Authorization: Bearer {{token}}
 Accept: application/json
 
 ###
@@ -26,3 +29,35 @@ Content-Type: application/json
 {
   "nombre": ""
 }
+
+###
+
+#Obtener usuario por Id (Solo admin)
+GET http://localhost:3000/usuarios/dbb77e3e-cf8d-4c1f-ac4f-27743909fe6e
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+#Actualizar usuario 
+PUT http://localhost:3000/usuarios/8f20b52f-7082-4ed3-a3ff-19122d501ea4
+Content-Type: application/json
+
+{
+  "nombre": "Alice Updated",
+  "email": "alice.updated@example.com"
+}
+
+###
+
+#Actualizar usuario con mail existente.
+PUT http://localhost:3000/usuarios/dbb77e3e-cf8d-4c1f-ac4f-27743909fe6e
+Content-Type: application/json
+
+{
+  "email": "maria.lopez@example.com"
+}
+
+###Eliminar Usuario (Solo admin)
+DELETE http://localhost:3000/usuarios/78566a7f-38ed-4179-82d0-3b3ad625363a
+Authorization: Bearer {{token}}

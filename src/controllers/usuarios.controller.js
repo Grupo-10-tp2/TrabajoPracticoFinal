@@ -1,4 +1,3 @@
-import supabase from "../config/supabaseClient.js";
 import { usuariosServices } from "../services/usuarios.services.js";
 
 export const usuariosController = {
@@ -11,7 +10,7 @@ export const usuariosController = {
 		}
 	},
 
-	async crearUsuario(req, res) {
+	async crearUsuario(req, res) {	
 		try {
 			const nuevoUsuario = req.body;
 			const resultado = await usuariosServices.crearUsuario(nuevoUsuario);
@@ -20,4 +19,37 @@ export const usuariosController = {
 			res.status(500).json({ error: error.message });
 		}
 	},
+
+	async obtenerUsuarioPorId(req,res){
+		try {
+			const {id} = req.params;
+			const usuario = await usuariosServices.obtenerUsuarioPorId(id);
+			res.status(200).json(usuario);
+		} catch (error) {
+			return res.status(500).json({error:error.message})
+		}
+	},
+
+	async actualizarDatosUsuario(req,res){
+		try {
+			const {id} = req.params;
+			const datosActualizados = req.body;
+			const usuarioActualizado = await usuariosServices.actualizarDatosUsuario(id,datosActualizados);
+			res.status(200).json({
+				message: "Usuario actualizado exitosamente.",
+                usuario: usuarioActualizado
+			})
+		} catch (error) {
+			res.status(500).json({error:error.message});
+		}
+	},
+	eliminarUsuario: async (req, res) => {
+  const { id } = req.params;
+  try {
+    await usuariosServices.eliminarUsuario(id);
+    res.status(200).json({ mensaje: "Usuario eliminado correctamente" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 };

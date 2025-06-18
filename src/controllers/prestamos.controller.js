@@ -31,22 +31,55 @@ export const prestamosController = {
 		}
 	},
 
-	async obtenerPrestamoPorUsuarioController(req, res) {
+	async obtenerPrestamoPorId(req,res){
 		try {
-			const { usuarioId } = req.params;
-			const prestamos =
-				await prestamosService.obtenerPrestamoPorUsuario(usuarioId);
-			res.status(200).json(prestamos);
-		} catch (error) {
+            const { id } = req.params;
+            const prestamo = await prestamosService.obtenerPrestamoPorId(id);
+            res.status(200).json(prestamo);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+	},
+
+	async obtenerPrestamosPorUsuarioDados(req,res){
+		try {
+            const { usuarioId } = req.params;
+            const prestamos = await prestamosService.obtenerPrestamosPorUsuarioDados(usuarioId);
+            res.status(200).json(prestamos);
+        } catch (error) {
 			res.status(500).json({ error: error.message });
 		}
 	},
+
+	async obtenerPrestamosPorUsuarioRecibidos(req,res){
+		try {
+            const { usuarioId } = req.params;
+            const prestamos = await prestamosService.obtenerPrestamosRecibidosPorUsuario(usuarioId);
+            res.status(200).json(prestamos);
+        } catch (error) {
+			res.status(500).json({ error: error.message })
+		}
+	},
+
+	// async obtenerPrestamoPorUsuarioController(req, res) {
+	// 	try {
+	// 		const { usuarioId } = req.params;
+	// 		const prestamos =
+	// 			await prestamosService.obtenerPrestamoPorUsuario(usuarioId);
+	// 		res.status(200).json(prestamos);
+	// 	} catch (error) {
+	// 		res.status(500).json({ error: error.message });
+	// 	}
+	// },
 
 	async registrarDevolucionController(req, res) {
 		try {
 			const { id } = req.params;
 			const devolucion = await prestamosService.registrarDevolucion(id);
-			res.status(200).json(devolucion);
+			res.status(200).json({
+                message: "Devolución registrada exitosamente.",
+                prestamo: devolucion
+            });
 		} catch (error) {
 			res.status(500).json({ error: error.message });
 		}

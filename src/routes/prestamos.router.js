@@ -8,13 +8,16 @@ prestamosRouter.get(
 	"/",
 	prestamosController.obtenerTodosLosPrestamosController,
 );
-prestamosRouter.get(
-	"/usuario/:usuarioId",
-	prestamosController.obtenerPrestamoPorUsuarioController,
-);
+// prestamosRouter.get(
+// 	"/usuario/:usuarioId",
+// 	prestamosController.obtenerPrestamoPorUsuarioController,
+// );
 prestamosRouter.put(
 	"/devolver/:id",
 	prestamosController.registrarDevolucionController,
 );
+prestamosRouter.get("/:id", prestamosController.obtenerPrestamoPorId);
+prestamosRouter.get("/dados/:usuarioId", prestamosController.obtenerPrestamosPorUsuarioDados);
+prestamosRouter.get("/recibidos/:usuarioId", prestamosController.obtenerPrestamosPorUsuarioRecibidos);
 
 export { prestamosRouter };
