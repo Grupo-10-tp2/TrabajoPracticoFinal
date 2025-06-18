@@ -46,8 +46,14 @@ export const usuariosController = {
 	eliminarUsuario: async (req, res) => {
   const { id } = req.params;
   try {
-    await usuariosServices.eliminarUsuario(id);
-    res.status(200).json({ mensaje: "Usuario eliminado correctamente" });
+	const usuario = await usuariosServices.obtenerUsuarioPorId(id);
+	if(usuario){
+		await usuariosServices.eliminarUsuario(id);
+    	res.status(200).json({ 
+			mensaje: "Usuario eliminado correctamente",
+			user: usuario
+		 });
+	}
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
