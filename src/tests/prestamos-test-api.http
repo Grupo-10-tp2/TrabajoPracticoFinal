@@ -38,6 +38,20 @@ Accept: application/json
 GET http://localhost:3000/prestamos/recibidos/8f20b52f-7082-4ed3-a3ff-19122d501ea4
 Accept: application/json
 
+### BorradoLogico
+PATCH http://localhost:3000/prestamos/eliminar-logico/6b5ae3c0-d573-4082-9cc7-5d6b18fd51e2
+Content-Type: application/json
+
+### Error al buscar por ID un prestamo eliminado
+GET http://localhost:3000/prestamos/6b5ae3c0-d573-4082-9cc7-5d6b18fd51e2
+Accept: application/json
+
+### Restaurar prestamo
+PATCH http://localhost:3000/prestamos/restaurar-prestamo/6b5ae3c0-d573-4082-9cc7-5d6b18fd51e2
+Content-Type: application/json
+
+
+
 #Fallas
 
 ### Crear incompleto

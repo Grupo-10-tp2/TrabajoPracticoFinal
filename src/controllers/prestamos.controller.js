@@ -84,4 +84,31 @@ export const prestamosController = {
 			res.status(500).json({ error: error.message });
 		}
 	},
+
+	async eliminarPrestamoLogico(req, res) {
+		try {
+			const { id }  = req.params;
+			const resultado = await prestamosService.eliminarPrestamo(id);
+			res.status(200).json({
+				mensaje: "Préstamo eliminado correctamente.",
+				prestamo: resultado,
+			});
+		} catch (error) {
+			res.status(400).json({ error: error.message });
+		}
+	},
+
+	async recuperarPrestamo(req, res) {
+		try {
+			const { id }  = req.params;
+			const resultado = await prestamosService.recuperarPrestamo(id);
+			res.status(200).json({
+				mensaje: "Préstamo recuperado correctamente.",
+				prestamo: resultado,
+			});
+		} catch (error) {
+			res.status(400).json({ error: error.message });
+		}
+	}
+
 };

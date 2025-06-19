@@ -19,5 +19,7 @@ prestamosRouter.put(
 prestamosRouter.get("/:id", prestamosController.obtenerPrestamoPorId);
 prestamosRouter.get("/dados/:usuarioId", prestamosController.obtenerPrestamosPorUsuarioDados);
 prestamosRouter.get("/recibidos/:usuarioId", prestamosController.obtenerPrestamosPorUsuarioRecibidos);
+prestamosRouter.patch("/eliminar-logico/:id", prestamosController.eliminarPrestamoLogico);
+prestamosRouter.patch("/restaurar-prestamo/:id", prestamosController.recuperarPrestamo);
 
 export { prestamosRouter };

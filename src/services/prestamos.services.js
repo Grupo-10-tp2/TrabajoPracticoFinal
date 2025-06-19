@@ -107,4 +107,36 @@ export const prestamosService = {
             return prestamoActualizado;
 		
 	},
+
+    async eliminarPrestamo(idPrestamo) {
+        const prestamo = await prestamosRepository.obtenerPrestamoPorId(idPrestamo);
+        if (!prestamo) {
+            throw new Error("Préstamo no encontrado.");
+        }
+
+        if (prestamo.eliminado) {
+            throw new Error("El préstamo ya ha sido eliminado.");
+        }
+
+        const eliminado = await prestamosRepository.eliminarPrestamoLogico(idPrestamo);
+        return eliminado;
+    },
+
+    async recuperarPrestamo(idPrestamo) {
+        const prestamo = await prestamosRepository.obtenerPrestamoPorIdSinFiltro(idPrestamo);
+        if (!prestamo) {
+            throw new Error("Préstamo no encontrado.");
+        }
+        if (prestamo.eliminado === false) {
+            throw new Error("El préstamo ya ha sido recuperado.");
+        }
+        const recuperado = await prestamosRepository.recuperarPrestamo(idPrestamo);
+
+        if (!recuperado) {
+            throw new Error("No se pudo completar la restauración del préstamo.");
+        }
+
+        return recuperado;
+    },
+
 };
