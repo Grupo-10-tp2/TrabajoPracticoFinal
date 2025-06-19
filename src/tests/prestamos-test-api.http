@@ -23,7 +23,7 @@ Accept: application/json
 
 
 ### Registrar devolución de un préstamo
-PUT http://localhost:3000/prestamos/devolver/e8260591-f484-4f7b-b81e-3bdcfbc178e1
+PUT http://localhost:3000/prestamos/devolver/d41ab765-24d1-4169-b4a5-4270a118e0f7
 Content-Type: application/json
 
 ### Obtener un préstamo por ID 
