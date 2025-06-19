@@ -1,7 +1,7 @@
 import express from "express";
 import { authRouter } from "./routes/auth.router.js";
 import { prestamosRouter } from "./routes/prestamos.router.js";
-import { promocionesRouter } from "./routes/promociones.router.js";
+//import { promocionesRouter } from "./routes/promociones.router.js";
 import { usuariosRouter } from "./routes/usuarios.router.js";
 import { videojuegosRouter } from "./routes/videojuegos.router.js";
 import { userGamesRouter } from "./routes/user_games.router.js";
@@ -14,7 +14,7 @@ app.use("/videojuegos", videojuegosRouter);
 app.use("/usuarios", usuariosRouter);
 app.use("/prestamos", prestamosRouter);
 app.use("/auth", authRouter);
-app.use("/promociones", promocionesRouter);
+//app.use("/promociones", promocionesRouter);
 app.use("/user-games",userGamesRouter);
 
 app.use((req, res) => {
