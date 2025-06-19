@@ -1,77 +1,75 @@
-#TrabajoPracticoFinal
+# 🎮 Trabajo Práctico Final – *LudORTeca (GameHub)*
 
-📝 Informe de Alcance – TP2: GameHub
-🎮 LudORTeca
-GameHub – Plataforma social de compra, préstamo y gestión de videojuegos
+> Plataforma social para la compra, préstamo y gestión de videojuegos.
 
-🎯 Objetivo General
-Desarrollar un sistema que permita a los usuarios gestionar su biblioteca digital de juegos, adquirir nuevos títulos y prestarlos a sus amigos. A través de funcionalidades sociales, los usuarios podrán construir su red de amistades, compartir su actividad y realizar transacciones entre ellos.
+---
 
-🔧 Módulos Principales
+## 📄 Informe de Alcance – TP2
 
-1. Usuarios
+### 🎯 Objetivo General
 
-Registro, login y autenticación por TOKEN.
+Desarrollar un sistema que permita a los usuarios:
 
-Gestión de perfil.
+- Gestionar su biblioteca digital de videojuegos.
+- Adquirir nuevos títulos.
+- Prestar y recibir préstamos de juegos entre amigos.
+- Compartir su actividad a través de funcionalidades sociales.
+- Realizar transacciones seguras entre usuarios.
 
-Visualización de actividad personal (compras, préstamos, etc).
+---
 
+## 🔧 Módulos Principales
 
-2. Juegos
-   
-Alta, modificación y baja (Por medio de login ADMIN).
+### 1. 👤 **Usuarios**
+- Registro, login y autenticación mediante token JWT.
+- Gestión del perfil de usuario.
+- Visualización de la actividad personal (compras, préstamos, etc).
 
-Catálogo navegable con filtros por ID.
+### 2. 🕹️ **Juegos**
+- Alta, baja y modificación de juegos (solo por usuarios administradores).
+- Catálogo navegable con filtros por ID.
+- Sistema de compra de juegos con integración a la biblioteca personal.
 
-Sistema de compra de juegos: un usuario compra un juego y lo agrega a su biblioteca personal.
+### 3. 🔁 **Préstamos**
+- Permite prestar juegos entre amigos.
+- Reglas:
+  - Solo es posible prestar entre usuarios amigos.
+  - No se puede prestar un juego ya prestado.
+  - El juego queda bloqueado para el dueño mientras esté prestado.
+- Registro detallado:
+  - Fecha de inicio.
+  - Fecha de devolución.
+  - Estado (activo/devuelto).
+- Historial completo de préstamos por usuario.
 
+---
 
-3. Préstamos
+## ✅ Casos de Uso de Complejidad Media/Alta
 
-Prestación de juegos a amigos.
+### 🧩 Gestión de Préstamos
+- Aplicación de reglas dinámicas de préstamo basadas en:
+  - Disponibilidad.
+  - Historial de uso.
+- Impacto directo en el estado del juego.
+- Registro de movimientos temporales y su efecto en la biblioteca del usuario.
 
-Restricciones: solo entre amigos, no se puede prestar si está en préstamo.
+---
 
-El juego queda bloqueado para el dueño mientras esté prestado.
+## 🛠️ Tecnologías Utilizadas
 
-Registro de fecha de inicio, devolución, estado (activo/devuelto).
+- **Backend**: Node.js (Express), ES6+ (async/await, módulos).
+- **Persistencia**: Supabase (PostgreSQL).
+- **Arquitectura**: En capas (Controller, Service, Repository).
+- **Testing**: Jest (con pruebas unitarias para casos positivos y negativos).
+- **Configuración**: Uso de variables de entorno en archivos `.env`.
 
-Historial de préstamos.
+---
 
+## 🗂️ Estructura del Proyecto
 
-
-✅ Casos de uso de complejidad media/alta
-
-🧩 1. Gestión de Préstamos
-
-Transformación de datos: reglas dinámicas de préstamo (disponibilidad, historial).
-
-Afecta estado del juego y bloquea uso mientras esté prestado.
-
-Permite registrar movimientos temporales y su impacto en la biblioteca.
-
-
-
-🛠️ Tecnologías
-
-Backend: Node.js (Express), ES6+ (async/await, módulos).
-
-Persistencia: Supabase (PostgreSQL).
-
-Arquitectura: en capas (Controller, Service, Repository).
-
-
-Testing: pruebas unitarias con Jest (casos felices + uno no feliz como mínimo).
-
-Configuración: uso de archivos .env para variables.
-
-
-
-🗂️ Estructura del proyecto
-
+```
 📁 tp2-gamehub
-│── 📂 src
+├── 📂 src
 │   ├── 📂 controllers
 │   ├── 📂 routes
 │   ├── 📂 models
@@ -80,16 +78,20 @@ Configuración: uso de archivos .env para variables.
 │   ├── 📂 config
 │   ├── 📂 tests
 │   └── server.js
-│── 📂 docs
-│── .env
-│── package.json
-│── README.md
+├── 📂 docs
+├── .env
+├── package.json
+└── README.md
+```
 
+---
 
+## 👥 Integrantes del Equipo
 
-INTEGRANTES: 
-Nicolas Rolon
-Brian Isaac Quindi
-Juan Ignacio Gomez Nevot
-Tomas Enzo Abalos Herrera
-Uriel Ivan Barrios
+- Nicolas Rolon  
+- Brian Isaac Quindi  
+- Juan Ignacio Gomez Nevot  
+- Tomas Enzo Abalos Herrera  
+- Uriel Ivan Barrios
+
+---
