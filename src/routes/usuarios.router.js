@@ -6,6 +6,7 @@ import { verificarRol } from "../middlewares/verificarRol.js";
 
 const usuariosRouter = Router();
 
+
 usuariosRouter.get("/", verificarToken, verificarRol(["admin"]),usuariosController.obtenerUsuarios);
 usuariosRouter.post("/", usuariosController.crearUsuario);
 usuariosRouter.get("/:id",verificarToken, usuariosController.obtenerUsuarioPorId);
